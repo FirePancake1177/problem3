@@ -31,7 +31,7 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.btn.setText(_translate("MainWindow", "Нажми на меня"))
+        self.btn.setText(_translate("MainWindow", "Кнопка"))
 
 
 class Example(QMainWindow, Ui_MainWindow):
