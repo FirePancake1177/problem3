@@ -4,11 +4,48 @@ from PyQt5 import uic
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 
+# -*- coding: utf-8 -*-
 
-class Example(QMainWindow):
+# Form implementation generated from reading ui file 'ui.ui'
+#
+# Created by: PyQt5 UI code generator 5.11.3
+#
+# WARNING! All changes made in this file will be lost!
+
+from PyQt5 import QtCore, QtGui, QtWidgets
+
+
+class Ui_MainWindow(object):
+    def setupUi(self, MainWindow):
+        MainWindow.setObjectName("MainWindow")
+        MainWindow.resize(584, 493)
+        self.centralwidget = QtWidgets.QWidget(MainWindow)
+        self.centralwidget.setObjectName("centralwidget")
+        self.btn = QtWidgets.QPushButton(self.centralwidget)
+        self.btn.setGeometry(QtCore.QRect(190, 120, 191, 51))
+        self.btn.setObjectName("btn")
+        MainWindow.setCentralWidget(self.centralwidget)
+        self.menubar = QtWidgets.QMenuBar(MainWindow)
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 584, 18))
+        self.menubar.setObjectName("menubar")
+        MainWindow.setMenuBar(self.menubar)
+        self.statusbar = QtWidgets.QStatusBar(MainWindow)
+        self.statusbar.setObjectName("statusbar")
+        MainWindow.setStatusBar(self.statusbar)
+
+        self.retranslateUi(MainWindow)
+        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+
+    def retranslateUi(self, MainWindow):
+        _translate = QtCore.QCoreApplication.translate
+        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        self.btn.setText(_translate("MainWindow", "Нажми на меня"))
+
+
+class Example(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi('UI.ui', self)
+        self.setupUi(self)
         self.btn.clicked.connect(self.run)
         self.start = False
 
@@ -23,12 +60,14 @@ class Example(QMainWindow):
             self.draw(painter)
             painter.end()
 
-    def draw(self, painter):
-        painter.setBrush(QColor(255, 255, 0))
-        for i in range(rand.randint(1, 10)):
+    def draw(self, qp):
+        for i in range(rand.randint(1, 7)):
+            r, g, b = rand.randint(0, 255), rand.randint(0, 255),\
+                               rand.randint(0, 255)
+            qp.setBrush(QColor(r, g, b))
             size = rand.randint(10, 100)
-            x, y = rand.randint(50, 400), rand.randint(160, 350)
-            painter.drawEllipse(x, y, size, size)
+            x, y = rand.randint(50, 420), rand.randint(160, 380)
+            qp.drawEllipse(x, y, size, size)
 
 
 if __name__ == "__main__":
